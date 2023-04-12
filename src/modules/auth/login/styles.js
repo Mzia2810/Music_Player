@@ -68,7 +68,7 @@ export const styles = StyleSheet.create({
   },
 
   forgetPassword: {
-    color: 'rgba(65, 120, 212, 1)',
+    color: 'orange',
     marginLeft: width / 20,
     marginTop: height / 50,
     fontSize:15,

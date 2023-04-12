@@ -35,8 +35,8 @@ const AppRoute = () => {
   return (
     <NavigationContainer>
      {/* {user ? <AppNavigator/> : <AuthNavigator/>   }  */}
-     {/* <AppNavigator /> */}
-     <AuthNavigator />
+     <AppNavigator />
+     {/* <AuthNavigator /> */}
     </NavigationContainer>
   );
 };

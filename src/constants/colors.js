@@ -1,6 +1,6 @@
-const Colors = {
-  primary: 'color',
+export default   Colors = {
   black: 'black',
-  yellow: '#FEBD2F',
+  yellow: '#fb9902',
+  white:'white',
 };
-export default Colors;
+
