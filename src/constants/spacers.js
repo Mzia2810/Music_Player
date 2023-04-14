@@ -10,5 +10,6 @@ export const margin = {
   lMargin: 20,
 };
 export const headings = {
-  xSize:15,
+  xSize:10,
+  small:14,
 };
