@@ -17,12 +17,12 @@ import Colors from "../constants/colors";
 import { headings } from "../constants/spacers";
 // import colors from "../constants/colors";
 
-const SongsItem = ({ item, imageStyle }) => {
+const SongsItem = ({ item, imageStyle ,onPress}) => {
   //   console.log("check Item ======", imageStyle);
   return (
     <View style={styles.itemContainer}>
       <View style={styles.innerContainer}>
-        <TouchableOpacity style={styles.deepInnerContainer}>
+        <TouchableOpacity onPress={imageStyle ? onPress : null}  style={styles.deepInnerContainer}>
           {imageStyle ? (
             <Image
               source={item.image}
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     marginTop: hp("1%"),
     width: wp("100%"),
     justifyContent: "center",
+    // height:hp('10%')
   },
   itemImage: {
     width: wp("18%"),

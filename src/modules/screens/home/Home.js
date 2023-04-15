@@ -26,7 +26,7 @@ const data1 = [
 ];
 
 const Home = () => {
-  const [selectedItemId, setSelectedItemId] = useState("2");
+  const [selectedItemId, setSelectedItemId] = useState("1");
 
   const renderItem1 = ({ item }) => (
     <TouchableOpacity

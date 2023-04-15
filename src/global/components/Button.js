@@ -1,15 +1,16 @@
 import { View, Text ,StyleSheet ,TouchableOpacity,Dimensions} from 'react-native'
 import React from 'react'
+import { headings } from '../../constants';
 
 const {width, height} = Dimensions.get('window');
 
 
 const Button = (props) => {
 
-    const {title,onPress} = props;
+    const {title,onPress,btnStyle} = props;
 
   return (
-    <TouchableOpacity  onPress={onPress} style={styles.appButtonContainer}>
+    <TouchableOpacity  onPress={onPress} style={btnStyle ? btnStyle:  styles.appButtonContainer}>
     <Text style={styles.appButtonText}>{title}</Text>
   </TouchableOpacity>
 
@@ -35,8 +36,9 @@ const styles = StyleSheet.create({
      
     },
     appButtonText: {
-        marginTop:5,
-      fontSize: 22,
+        // marginTop:5,
+        textAlign:'center',
+      fontSize:headings.large,
       color: "#fff",
       fontWeight: "bold",
       alignSelf: "center",

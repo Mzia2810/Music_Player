@@ -12,4 +12,6 @@ export const margin = {
 export const headings = {
   xSize:10,
   small:14,
+  large:18,
+  xLarge:20,
 };

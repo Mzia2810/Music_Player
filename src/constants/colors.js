@@ -3,5 +3,6 @@ export default   Colors = {
   yellow: '#fb9902',
   white:'white',
   gray:'gray',
+  darkGray:'#25383C',
 };
 

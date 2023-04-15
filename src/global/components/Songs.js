@@ -17,6 +17,7 @@ import Colors from "../../constants/colors";
 import { headings } from "../../constants/spacers";
 import colors from "../../constants/colors";
 import SongsItem from "../SongsItem";
+import { useNavigation } from "@react-navigation/native";
 
 const Songs = ({ artist, recently, mostPlayed, imageStyle, text }) => {
   const data2 = [
@@ -57,7 +58,9 @@ const Songs = ({ artist, recently, mostPlayed, imageStyle, text }) => {
     },
   ];
 
-  console.log("image style ", imageStyle);
+  const navigation = useNavigation()
+
+  // console.log("image style ", imageStyle);
 
   return (
     <View style={styles.recent}>
@@ -75,7 +78,7 @@ const Songs = ({ artist, recently, mostPlayed, imageStyle, text }) => {
       </View>
       <View>
         {data2.map((item) => {
-          return <SongsItem imageStyle={imageStyle} item={item} />;
+          return <SongsItem onPress={() => navigation.navigate('AlbumSongsList')} imageStyle={imageStyle} item={item} />;
         })}
       </View>
     </View>

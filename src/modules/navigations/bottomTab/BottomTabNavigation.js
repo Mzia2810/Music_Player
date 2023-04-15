@@ -38,12 +38,12 @@ const BottomTabNavigator = () => {
       screenOptions={{
         tabBarActiveTintColor: "#fb9902",
         tabBarShowLabel: false,
-        tabBarStyle:{
+        tabBarStyle: {
           height: 45,
-          backgroundColor:'black',
-          borderTopWidth:1,
-          borderTopColor:'black',
-        }
+          backgroundColor: "black",
+          borderTopWidth: 1,
+          borderTopColor: "black",
+        },
       }}
     >
       <Tab.Screen
@@ -51,10 +51,7 @@ const BottomTabNavigator = () => {
         options={{
           headerShown: true,
           headerStyle: { backgroundColor: "black" },
-          // tabBarStyle: {
-          //   height: 50,
-          //   backgroundColor: "black",
-          // },
+
           title: "Mume",
           headerTitleStyle: { color: colors.white },
           tabBarIcon: ({ color }) => (
@@ -98,14 +95,14 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="Favorites"
         options={{
+          headerTitle: "Favorites",
           headerShown: true,
-          // tabBarStyle: {
-          //   height: 50,
-          //   backgroundColor: "black",
-          // },
-          tabBarIcon: ({ color }) => (<>
-            <EvilIcons name="heart" color={color} size={25} />
-            <Text
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "black" },
+          tabBarIcon: ({ color }) => (
+            <>
+              <EvilIcons name="heart" color={color} size={25} />
+              <Text
                 style={{
                   color: color,
                   fontSize: headings.xSize,
@@ -115,16 +112,21 @@ const BottomTabNavigator = () => {
               >
                 Favorites
               </Text>
-          </>
+            </>
           ),
-          // headerLeft: () => <Text style={{fontSize:20,color:'black',fontWeight:'bold',marginLeft:10}}>All Assignments</Text>,
+
+          headerLeft: () => (
+            <View style={styles.musicIcon}>
+              <FontAwesome name={"music"} size={25} color={colors.yellow} />
+            </View>
+          ),
           headerRight: (color) => (
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{ marginRight: 10, padding: 7, borderRadius: 10 }}
                 onPress={() => console.log("true")}
               >
-                <AntDesign name="search1" size={30} />
+                <AntDesign name="search1" size={25} color={Colors.white} />
               </TouchableOpacity>
             </View>
           ),
@@ -134,14 +136,14 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="PlayList"
         options={{
+          headerTitle: "Playlists",
           headerShown: true,
-          // tabBarStyle: {
-          //   height: 50,
-          //   backgroundColor:'black',
-          // },
-          tabBarIcon: ({ color }) => (<>
-            <Feather name="file-text" color={color} size={25} />
-            <Text
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "black" },
+          tabBarIcon: ({ color }) => (
+            <>
+              <Feather name="file-text" color={color} size={20} />
+              <Text
                 style={{
                   color: color,
                   fontSize: headings.xSize,
@@ -149,18 +151,23 @@ const BottomTabNavigator = () => {
                   textAlign: "center",
                 }}
               >
-                Playlist
+                Playlists
               </Text>
-          </>
+            </>
           ),
-          // headerLeft: () => <Text style={{fontSize:20,color:'black',fontWeight:'bold',marginLeft:10}}>All Assignments</Text>,
-          headerRight: () => (
+
+          headerLeft: () => (
+            <View style={styles.musicIcon}>
+              <FontAwesome name={"music"} size={25} color={colors.yellow} />
+            </View>
+          ),
+          headerRight: (color) => (
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
                 style={{ marginRight: 10, padding: 7, borderRadius: 10 }}
-                onPress={() => setIsCalendar(true)}
+                onPress={() => console.log("true")}
               >
-                <AntDesign name="search1" size={30} />
+                <AntDesign name="search1" size={25} color={Colors.white} />
               </TouchableOpacity>
             </View>
           ),
@@ -170,14 +177,14 @@ const BottomTabNavigator = () => {
       <Tab.Screen
         name="Settings"
         options={{
+          headerTitle: "Settings",
           headerShown: true,
-          // tabBarStyle: {
-          //   height: 50,
-          //   backgroundColor:'black',
-          // },
-          tabBarIcon: ({ color }) => (<>
-            <Ionicons name="ios-settings-outline" color={color} size={25} />
-            <Text
+          headerTintColor: "white",
+          headerStyle: { backgroundColor: "black" },
+          tabBarIcon: ({ color }) => (
+            <>
+              <Ionicons name="settings-outline" color={color} size={20} />
+              <Text
                 style={{
                   color: color,
                   fontSize: headings.xSize,
@@ -187,16 +194,21 @@ const BottomTabNavigator = () => {
               >
                 Settings
               </Text>
-          </>
+            </>
           ),
-          // headerLeft: () => <Text style={{fontSize:20,color:'black',fontWeight:'bold',marginLeft:10}}>All Assignments</Text>,
-          headerRight: () => (
+
+          headerLeft: () => (
+            <View style={styles.musicIcon}>
+              <FontAwesome name={"music"} size={25} color={colors.yellow} />
+            </View>
+          ),
+          headerRight: (color) => (
             <View style={{ flexDirection: "row" }}>
               <TouchableOpacity
-                style={{ marginRight: 10, padding: 7, borderRadius: 10 }}
-                onPress={() => setIsCalendar(true)}
+                style={{ marginRight: 10, padding: 7, borderRadius: 10,marginTop:3 }}
+                onPress={() => console.log("true")}
               >
-                <AntDesign name="search1" size={30} />
+                <Ionicons name="ellipsis-horizontal-circle-outline" size={25} color={Colors.white} />
               </TouchableOpacity>
             </View>
           ),
