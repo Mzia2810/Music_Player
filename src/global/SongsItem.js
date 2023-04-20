@@ -15,35 +15,63 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Colors from "../constants/colors";
 import { headings } from "../constants/spacers";
+import { useNavigation } from "@react-navigation/native";
 // import colors from "../constants/colors";
 
-const SongsItem = ({ item, imageStyle ,onPress}) => {
-  //   console.log("check Item ======", imageStyle);
+const SongsItem = ({ item, imageStyle, onPress }) => {
+
+  // console.log('here is my osng in item ===============================================>',item)
+
+
+  const navigation = useNavigation();
+
+  function formatSongDuration(durationInSeconds) {
+    const minutes = Math.floor(durationInSeconds / 60);
+    const seconds = durationInSeconds % 60;
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  }
+
+ 
+
+
+
+  
+
+
   return (
     <View style={styles.itemContainer}>
       <View style={styles.innerContainer}>
-        <TouchableOpacity onPress={imageStyle ? onPress : null}  style={styles.deepInnerContainer}>
+        <TouchableOpacity
+          onPress={imageStyle ? onPress : null}
+          style={styles.deepInnerContainer}
+        >
           {imageStyle ? (
             <Image
-              source={item.image}
-              style={[styles.itemImage, { borderRadius: 50 }]}
+              source={require('../assets/images/download.jpg')}
+              style={[styles.itemImage, { borderRadius: 50 },]}
             />
           ) : (
             <Image
-              source={item.image}
-              style={[styles.itemImage, { borderRadius: 8 }]}
+              source={require('../assets/images/download.jpg')}
+              style={[styles.itemImage, { borderRadius: 8, },]}
+          
             />
           )}
           <View style={styles.titleContainer}>
-            <Text style={styles.itemTitle}>{item.title}</Text>
-            <Text style={styles.desc}>
-              {item.desc} {item.time}
+            <Text style={styles.itemTitle}>{item?.name}</Text>
+            <Text style={styles?.desc}>
+              {item?.artist?.name} {'|'}  {formatSongDuration(item?.duration)}
             </Text>
           </View>
         </TouchableOpacity>
         {imageStyle ? null : (
           <View style={styles.icons}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('AudioPlayer',{
+              songName:item?.name,
+              artistName:item?.artist?.name,
+              songPlay:item?.url,
+
+            })} >
               <AntDesign name="play" size={25} color={Colors.yellow} />
             </TouchableOpacity>
             <TouchableOpacity>
@@ -81,6 +109,7 @@ const styles = StyleSheet.create({
     color: Colors.white,
     marginTop: hp("1%"),
     textAlign: "left",
+    width:100,
   },
   desc: {
     fontSize: headings.xSize,

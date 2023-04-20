@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import Colors from "../../../constants/colors";
 import RecentlyPlayed from "../../../global/components/RecentlyPlayed";
 import Songs from "../../../global/components/Songs";
 import colors from "../../../constants/colors";
+import axios from "axios";
 
 const data1 = [
   { id: "1", name: "Suggested" },
@@ -25,9 +26,17 @@ const data1 = [
   { id: "5", name: "Favorites" },
 ];
 
+//  Api key
+const API_KEY = "ef402f25a2d3539f737919169192f846";
+
 const Home = () => {
   const [selectedItemId, setSelectedItemId] = useState("1");
+  const [topTracks, setTopTracks] = useState([]);
+  const [topArtists, setTopArtists] = useState([]);
 
+  // console.log('here is top artist ============ : ',topArtists)
+
+  // items to be render
   const renderItem1 = ({ item }) => (
     <TouchableOpacity
       onPress={() => setSelectedItemId(item.id)}
@@ -44,6 +53,21 @@ const Home = () => {
     </TouchableOpacity>
   );
 
+  //  Api call
+  // top tracks
+  useEffect(() => {
+    fetch(
+      `https://ws.audioscrobbler.com/2.0/?method=user.gettoptracks&user=rj&api_key=ef402f25a2d3539f737919169192f846&format=json`
+      // `https://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=cher&api_key=${API_KEY}&format=json`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("songs tracks ===============> ====================>  :: ", data.toptracks.track);
+        setTopTracks(data.toptracks.track);
+      })
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <ScrollView style={styles.body}>
       <View>
@@ -56,19 +80,23 @@ const Home = () => {
       </View>
       {selectedItemId == "1" && (
         <>
-          <RecentlyPlayed recently={"Recently Played"} />
-          <RecentlyPlayed imageStyle artist={"Artist"} />
-          <RecentlyPlayed mostPlayed={"Most Played"} />
+          <RecentlyPlayed data={topTracks} recently={"Recently Played"} />
+          <RecentlyPlayed data={topTracks} imageStyle artist={"Artist"} />
+          <RecentlyPlayed data={topTracks} mostPlayed={"Most Played"} />
         </>
       )}
       {selectedItemId == "2" && (
         <>
-          <Songs recently={"Recently Played"} />
+          <Songs data={topTracks} recently={"Songs"} />
         </>
       )}
       {selectedItemId == "3" && (
         <>
-          <Songs text={'Date Added'} imageStyle={{borderRadius:50}}  recently={"85 Artist"} />
+          <Songs
+            text={"Date Added"}
+            imageStyle={{ borderRadius: 50 }}
+            recently={"85 Artist"}
+          />
         </>
       )}
     </ScrollView>

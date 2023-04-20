@@ -68,7 +68,11 @@ const RATE_SCALE = 3.0;
 
 export default class AudioPlayer extends React.Component {
   constructor(props) {
+    
+    
     super(props);
+ 
+    // this.state = { };
     this.index = 0;
     this.isSeeking = false;
     this.shouldPlayAtEndOfSeek = false;
@@ -92,6 +96,16 @@ export default class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
+
+    
+    const { route } = this.props;
+    const { songName, artistName, songPlay } = route.params;
+
+    console.log('Song Name:', songName);
+    console.log('Artist Name:', artistName);
+    console.log('Song Play:', songPlay);
+
+
     Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
       interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
@@ -362,16 +376,22 @@ export default class AudioPlayer extends React.Component {
   }
 
   render() {
+
+    
+  
+    const { route } = this.props;
+    const { songName, artistName, songPlay } = route.params;
+
     return (
       <View style={{ backgroundColor: Colors.black, flex: 1 }}>
         <View style={styles.imgContainer}>
           <Image
-            source={require("../../../assets/images/download.png")}
+            source={require("../../../assets/images/player.png")}
             style={styles.img}
           />
           <View style={styles.imgTitle}>
-            <Text style={styles.songName}>Ariana Grande</Text>
-            <Text style={styles.songDesc}>The Weekend . Daft bunk</Text>
+            <Text style={styles.songName}>{songName ? songName : 'Ariana Grande'}</Text>
+            <Text style={styles.songDesc}>{artistName ? artistName : 'The Weekend . Daft bunk'}</Text>
           </View>
         </View>
         <View style={styles.SliderArea}>
@@ -471,50 +491,9 @@ export default class AudioPlayer extends React.Component {
             </View>
           </View>
           {/* ............................... */}
-          <View style={[styles.playerContainer, { marginTop: 15 }]}>
-            <View style={styles.playerButtons}>
-              <TouchableOpacity>
-                <View>
-                  <SimpleLineIcons
-                    name="speedometer"
-                    size={25}
-                    color={Colors.white}
-                  />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this._onBackPressed}>
-                <View>
-                  <Fontisto name="stopwatch" size={25} color={Colors.white} />
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={this._onForwardPressed}>
-                <View>
-                  <Foundation
-                    name="mobile-signal"
-                    size={25}
-                    color={Colors.white}
-                  />
-                </View>
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <View>
-                  <SimpleLineIcons
-                    name="options-vertical"
-                    size={25}
-                    color={Colors.white}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
-          </View>
+          
           {/* End Aracbic */}
-          <TouchableOpacity style={{ justifyContent: "center", alignItems: "center" ,marginTop:30}}>
-            <FontAwesome name="angle-up" size={25}  color={Colors.white}/>
-            <Text style={{ color: Colors.white, textAlign: "center" }}>
-              Lyrics
-            </Text>
-          </TouchableOpacity>
+        
           {/* ................. */}
         </View>
       </View>
