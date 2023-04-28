@@ -20,7 +20,7 @@ import { useNavigation } from "@react-navigation/native";
 
 const SongsItem = ({ item, imageStyle, onPress }) => {
 
-  // console.log('here is my osng in item ===============================================>',item)
+  console.log('here is my url in item ===============================================>',item?.preview)
 
 
   const navigation = useNavigation();
@@ -58,7 +58,7 @@ const SongsItem = ({ item, imageStyle, onPress }) => {
             />
           )}
           <View style={styles.titleContainer}>
-            <Text style={styles.itemTitle}>{item?.name}</Text>
+            <Text style={styles.itemTitle}>{item?.title}</Text>
             <Text style={styles?.desc}>
               {item?.artist?.name} {'|'}  {formatSongDuration(item?.duration)}
             </Text>
@@ -67,9 +67,9 @@ const SongsItem = ({ item, imageStyle, onPress }) => {
         {imageStyle ? null : (
           <View style={styles.icons}>
             <TouchableOpacity onPress={() => navigation.navigate('AudioPlayer',{
-              songName:item?.name,
+              songName:item?.title,
               artistName:item?.artist?.name,
-              songPlay:item?.url,
+              songPlay:item?.preview,
 
             })} >
               <AntDesign name="play" size={25} color={Colors.yellow} />

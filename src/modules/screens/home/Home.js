@@ -33,6 +33,7 @@ const Home = () => {
   const [selectedItemId, setSelectedItemId] = useState("1");
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
+  const [songs, setSongs] = useState([]);
 
   // console.log('here is top artist ============ : ',topArtists)
 
@@ -62,12 +63,31 @@ const Home = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        // console.log("songs tracks ===============> ====================>  :: ", data.toptracks.track);
         setTopTracks(data.toptracks.track);
       })
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "d87bed5b6fmshc34f575ea9ddb68p12da1ajsn659bff6b5ac7",
+        "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+      },
+    };
+
+    fetch("https://deezerdevs-deezer.p.rapidapi.com/playlist/123456", options)
+      .then((response) => response.json())
+      .then((response) => {
+        // console.log('response=======================>Response <======================= > ',response);
+        // console.log('response=======================>Tracks data <======================= > ',response.tracks.data[0]);
+        setSongs(response.tracks.data)
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  // console.log('songs from deezer ===========================> ',songs)
   return (
     <ScrollView style={styles.body}>
       <View>
@@ -87,7 +107,7 @@ const Home = () => {
       )}
       {selectedItemId == "2" && (
         <>
-          <Songs data={topTracks} recently={"Songs"} />
+          <Songs data={songs} recently={"Songs"} />
         </>
       )}
       {selectedItemId == "3" && (
